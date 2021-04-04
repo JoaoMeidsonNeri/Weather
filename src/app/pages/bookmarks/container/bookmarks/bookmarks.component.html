@@ -1,0 +1,22 @@
+<nav class="navbar navbar-dark bg-dark" style="height: 87px;">
+  <a class="navbar-brand" routerLink="/" href="#">Weather</a>
+</nav>  
+
+<div class="card mt-3 ms-3" style="width: 400px;">
+  <div class="fs-5 d-flex justify-content-center">
+    <span>Favoritos</span>
+  </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between" *ngFor="let bookmark of bookmarks$ | async">
+        <a  class="text-decoration-none"
+            [routerLink]="['../details']"
+            [queryParams]="{lat: bookmark.coord.lat, lon: bookmark.coord.lon}">
+          {{ bookmark.name }} - {{bookmark.country}}
+        </a>
+        <button class="btn btn-dark btn-sm"
+                (click)="removeBookmark(bookmark.id)">
+                Excluir
+        </button>
+      </li>
+    </ul>
+</div>

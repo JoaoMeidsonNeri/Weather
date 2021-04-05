@@ -1,17 +1,12 @@
-<nav class="navbar navbar-dark bg-dark">
-  <div>
-    <a class="navbar-brand" routerLink="/">Weather</a>
-    <a class="navbar-brand" style="color: white" routerLink="/bookmarks">Favoritos</a>
-  </div>
-  <app-unit-selector></app-unit-selector>
-</nav>  
-
 <div class="d-flex justify-content-center mt-3">
   <div class="input-group" style="width: 600px;">
-    <input class="form-control mr-sm-2" type="text" [formControl]="searchControl">
+    <input class="form-control mr-sm-2" type="text" [formControl]="searchControl" placeholder="Acre, Br">
     <button class="btn btn-outline-dark my-2 my-sm-0" [disabled]="!searchControl.valid" (click)="doSearch()" type="button">Search</button>
   </div>
 </div>  
+
+<br>
+<app-loader *ngIf="loading$ | async"></app-loader>
 
 <div class="d-flex justify-content-center" 
     *ngIf="!(loading$ | async) && !(error$ | async) && !!cityWeather">

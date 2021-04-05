@@ -13,8 +13,8 @@ import * as fromConfigActions from '../../../../shared/state/config/config.actio
 })
 export class UnitSelectorComponent implements OnInit {
 
-  unit$!: Observable<Units>;
-  unit!: Units;
+  unit$: Observable<Units>;
+  unit: Units;
 
   unitsEnum = Units;
 

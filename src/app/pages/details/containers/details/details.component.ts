@@ -16,20 +16,18 @@ import * as fromDetailsSelectors from '../state/details.selectors'
 })
 export class DetailsComponent implements OnInit {
 
-  details$!: Observable<CityDailyWeather>;
-  error$!: Observable<boolean>
-
-  unit$!: Observable<Units>;
-
+  details$: Observable<CityDailyWeather>;
+  loading$: Observable<boolean>;
+  error$: Observable<boolean>
+  unit$: Observable<Units>;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.store.dispatch(fromDetailsActions.loadWeatherDetails());
-
     this.details$ = this.store.pipe(select(fromDetailsSelectors.selectDetailsEntity));
     this.error$ = this.store.pipe(select(fromDetailsSelectors.selectDetailsError));
-
+    this.loading$ = this.store.pipe(select(fromDetailsSelectors.selectDetailsLoading));
     this.unit$ = this.store.pipe(select(fromConfigSelectors.selectUnitConfig));
   }
 

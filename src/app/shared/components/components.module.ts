@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from '@angular/forms';
 
 import { DetailedWeatherComponent } from './detailed-weather/detailed-weather.component';
+import { LoaderComponent } from './detailed-weather/loader/loader.component';
 
 @NgModule({
   imports: [
@@ -11,9 +12,10 @@ import { DetailedWeatherComponent } from './detailed-weather/detailed-weather.co
   ],
   declarations: [
     DetailedWeatherComponent,
+    LoaderComponent
   ],
   exports: [
-    DetailedWeatherComponent,
+    DetailedWeatherComponent, LoaderComponent
   ]
 })
 export class ComponentsModule {

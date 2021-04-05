@@ -18,6 +18,7 @@ export class CurrentWeatherComponent {
 
 
   get cityName(): string {
+    console.log(this.unit)
     return `${this.cityWeather.city.name}, ${this.cityWeather.city.country}`;
   }
 

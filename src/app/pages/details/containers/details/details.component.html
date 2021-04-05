@@ -1,12 +1,15 @@
 <div class="container-fluid">
-  
-  <ng-template #notLoading>
+
+  <app-loader *ngIf="loading$ | async; else notLoading"></app-loader>
+
+  <div style="width: 600px;">
     <ng-container *ngIf="!(error$ | async)">
       <h1>{{ (details$ | async).city.name }}, {{ (details$ | async).city.country }}</h1>
 
       <div class="card current-card">
         <app-detailed-weather [weather]="(details$ | async).current"
-                              [unit]="unit$ | async"></app-detailed-weather>
+                            [unit]="unit$ | async">
+        </app-detailed-weather>
       </div>
 
       <app-daily-weather *ngFor="let daily of (details$ | async).daily"
@@ -15,7 +18,5 @@
                         [unit]="unit$ | async">
       </app-daily-weather>
     </ng-container>
-
-    <div *ngIf="error$ | async">Erro</div>
-  </ng-template>
+  </div>
 </div>

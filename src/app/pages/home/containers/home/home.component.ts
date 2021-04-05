@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ApplicationRef, Component, ComponentFactoryResolver, Injector, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject, combineLatest } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators'
+import { PortalOutlet, DomPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
 
 import { UnitSelectorComponent } from '../unit-selector/unit-selector.component';
 import { Units } from 'src/app/shared/models/units.enum';
@@ -21,22 +22,26 @@ import * as fromBookmarksSelectors from 'src/app/pages/bookmarks/state/bookmarks
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  cityWeather$!: Observable<CityWeather>;
-  cityWeather!: CityWeather;
-  unit!: Units
-  loading$!: Observable<boolean>;
-  error$!: Observable<boolean>;
+  cityWeather$: Observable<CityWeather>;
+  cityWeather: CityWeather;
+  unit: Units
+  loading$: Observable<boolean>;
+  error$: Observable<boolean>;
   
-  searchControl!: FormControl;
-  bookmarksList$!: Observable<Bookmark[]>;
+  searchControl: FormControl;
+  bookmarksList$: Observable<Bookmark[]>;
 
-  unit$!: Observable<Units>;
+  unit$: Observable<Units>;
 
-  isCurrentFavorite$!: Observable<boolean>;
+  isCurrentFavorite$: Observable<boolean>;
 
   private componentDestroyed$ = new Subject();
+  private portalOutlet: PortalOutlet;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store,
+              private componentFactoryResolver: ComponentFactoryResolver,
+              private appRef: ApplicationRef,
+              private injector: Injector) { }
 
   ngOnInit(): void {
     this.searchControl = new FormControl('', Validators.required);
@@ -60,13 +65,14 @@ export class HomeComponent implements OnInit, OnDestroy {
         }),
       );
       this.unit$ = this.store.pipe(select(fromConfigSelectors.selectUnitConfig));
-
+      this.setupPortal();
   }
 
   ngOnDestroy() {
     this.componentDestroyed$.next();
     this.componentDestroyed$.unsubscribe();
     this.store.dispatch(fromHomeActions.clearHomeState());
+    this.portalOutlet.detach();
   }
 
   doSearch():void {
@@ -81,6 +87,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     bookmark.country = this.cityWeather.city.country;
     bookmark.coord = this.cityWeather.city.coord;
     this.store.dispatch(fromHomeActions.toggleBookmark({ entity: bookmark }));
+  }
+
+  private setupPortal() {
+    const el = document.querySelector('#navbar-portal-outlet');
+    this.portalOutlet = new DomPortalOutlet(
+      el,
+      this.componentFactoryResolver,
+      this.appRef,
+      this.injector,
+    );
+    this.portalOutlet.attach(new ComponentPortal(UnitSelectorComponent));
   }
 
 }

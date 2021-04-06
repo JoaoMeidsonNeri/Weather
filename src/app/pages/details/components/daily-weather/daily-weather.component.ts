@@ -15,9 +15,9 @@ import { unitToSymbol } from 'src/app/shared/utils/units.util';
 })
 export class DailyWeatherComponent  {
 
-  @Input() dailyWeather!: DailyWeather;
-  @Input() timeZone!: string;
-  @Input() unit!: Units;
+  @Input() dailyWeather: DailyWeather;
+  @Input() timeZone: string;
+  @Input() unit: Units;
 
   get weather(): Weather {
     return this.dailyWeather.weather;
@@ -30,6 +30,7 @@ export class DailyWeatherComponent  {
   get icon(): string {
     return `http://openweathermap.org/img/wn/${this.weather.icon}@2x.png`;
   }
+  
   get unitSymbol() {
     return unitToSymbol(this.unit);
   }

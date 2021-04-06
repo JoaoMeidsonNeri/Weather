@@ -15,7 +15,7 @@ import * as fromBookmarksActions from 'src/app/pages/bookmarks/state/bookmarks.a
 })
 export class BookmarksComponent implements OnInit, OnDestroy {
 
-  bookmarks$!: Observable<Bookmark[]>;
+  bookmarks$: Observable<Bookmark[]>;
 
   private componentDestroyed$ = new Subject();
 

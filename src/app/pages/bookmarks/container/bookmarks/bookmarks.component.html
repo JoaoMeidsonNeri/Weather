@@ -2,7 +2,8 @@
   <div class="fs-5 d-flex justify-content-center">
     <span>Favoritos</span>
   </div>
-    <ul class="list-group list-group-flush">
+  <ul class="list-group list-group-flush">
+    <div class="d-flex justify-content-center align-items-center" style="height: 40px;" *ngIf="!(bookmarks$ | async).length">Nenhum favorito adicionado</div>
       <li class="list-group-item d-flex justify-content-between" *ngFor="let bookmark of bookmarks$ | async">
         <a  class="text-decoration-none"
             [routerLink]="['../details']"

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { CurrentWeatherComponent } from './components/current-weather/current-weather.component';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
@@ -23,6 +24,7 @@ import { UnitSelectorComponent } from './containers/unit-selector/unit-selector.
     ReactiveFormsModule,
     RouterModule,
     StoreModule.forFeature('home', homeReducer),
+    MatButtonToggleModule
   ]
 })
 export class HomeModule { }

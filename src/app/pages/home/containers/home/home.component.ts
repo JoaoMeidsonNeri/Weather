@@ -1,13 +1,13 @@
 import { ApplicationRef, Component, ComponentFactoryResolver, Injector, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { PortalOutlet, DomPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
 
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject, combineLatest } from 'rxjs';
 import { takeUntil, map } from 'rxjs/operators'
-import { PortalOutlet, DomPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
 
-import { UnitSelectorComponent } from '../unit-selector/unit-selector.component';
 import { Units } from 'src/app/shared/models/units.enum';
+import { UnitSelectorComponent } from '../unit-selector/unit-selector.component';
 import { Bookmark } from 'src/app/shared/models/bookmark.model'
 import { CityWeather } from 'src/app/shared/models/weather.model';
 import * as fromConfigSelectors from '../../../../shared/state/config/config.selector';
@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   cityWeather$: Observable<CityWeather>;
   cityWeather: CityWeather;
-  unit: Units
   loading$: Observable<boolean>;
   error$: Observable<boolean>;
   

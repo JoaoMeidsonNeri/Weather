@@ -11,9 +11,9 @@ import { Units } from 'src/app/shared/models/units.enum';
 })
 export class CurrentWeatherComponent {
 
-  @Input() cityWeather!: CityWeather;
-  @Input() isFavorite!: boolean;
-  @Input() unit!: Units;
+  @Input() cityWeather: CityWeather;
+  @Input() isFavorite: boolean;
+  @Input() unit: Units;
   @Output() toggleBookmark = new EventEmitter();
 
 

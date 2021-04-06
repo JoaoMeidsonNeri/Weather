@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+
 import { Observable } from 'rxjs';
-import { Units } from 'src/app/shared/models/units.enum';
+import { Store, select } from '@ngrx/store';
+
 import { AppState } from 'src/app/shared/state/app.reducer';
+import { Units } from 'src/app/shared/models/units.enum';
 import * as fromConfigSelectors from 'src/app/shared/state/config/config.selector';
 import * as fromConfigActions from '../../../../shared/state/config/config.actions';
 

@@ -4,7 +4,7 @@
     <app-detailed-weather [weather]="cityWeather.weather "
                           [unit]="unit">
     </app-detailed-weather>
-    <div class="card-actions">
+    <div class="card-actions mt-3">
       <a class="card-link" (click)="onToggleBookmark()" type="link">
         {{ isFavorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos' }}
       </a>

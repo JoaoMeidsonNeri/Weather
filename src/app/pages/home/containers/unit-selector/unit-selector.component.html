@@ -1,23 +1,6 @@
 <!-- With Angular Material -->
-<mat-button-toggle-group color='warning' appearance="legacy" name="fontStyle" aria-label="Font Style">
-  <mat-button-toggle value="Celsius" (click)="updateUnit(unitsEnum.Metric)" aria-pressed="true">˚C</mat-button-toggle>
-  <mat-button-toggle value="Fahrenheit" (click)="updateUnit(unitsEnum.Imperial)">˚F</mat-button-toggle>
-  <mat-button-toggle value="Kelvin" (click)="updateUnit(unitsEnum.SI)">K</mat-button-toggle>
+<mat-button-toggle-group color='warning' appearance="legacy" name="fontStyle" aria-label="Font Style" #group="matButtonToggleGroup" value="Celsius">
+  <mat-button-toggle value="Celsius" (click)="updateUnit(unitsEnum.Metric)" aria-pressed="true" title="Celsius">˚C</mat-button-toggle>
+  <mat-button-toggle value="Fahrenheit" (click)="updateUnit(unitsEnum.Imperial)" title="Fahrenheit">˚F</mat-button-toggle>
+  <mat-button-toggle value="Kelvin" (click)="updateUnit(unitsEnum.SI)" title="Kelvin">K</mat-button-toggle>
 </mat-button-toggle-group>
-
-<!--  With Bootstrap -->
-
-<!-- <div>
-  <span style="color: white">Unidade</span>
-  <ul class="list-inline">
-    <li class="list-inline-item" (click)="updateUnit(unitsEnum.Metric)">
-     <button class="btn btn-warning btn-sm"><a>˚C</a></button>
-    </li>
-    <li class="list-inline-item" (click)="updateUnit(unitsEnum.Imperial)">
-      <button class="btn btn-warning btn-sm"><a>˚F</a></button>
-    </li>
-    <li class="list-inline-item" (click)="updateUnit(unitsEnum.SI)">
-      <button class="btn btn-warning btn-sm"><a>K</a></button>
-    </li>
-  </ul>
-</div> -->

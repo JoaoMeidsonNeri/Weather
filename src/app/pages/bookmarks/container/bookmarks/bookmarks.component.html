@@ -1,10 +1,10 @@
 <div class="card mt-3 ms-3" style="width: 400px;">
   <div class="fs-5 d-flex justify-content-center">
-    <span>Favoritos</span>
+    <span class="p-2">Favoritos</span>
   </div>
   <ul class="list-group list-group-flush">
     <div class="d-flex justify-content-center align-items-center" style="height: 40px;" *ngIf="!(bookmarks$ | async).length">Nenhum favorito adicionado</div>
-      <li class="list-group-item d-flex justify-content-between" *ngFor="let bookmark of bookmarks$ | async">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let bookmark of bookmarks$ | async">
         <a  class="text-decoration-none"
             [routerLink]="['../details']"
             [queryParams]="{lat: bookmark.coord.lat, lon: bookmark.coord.lon}">

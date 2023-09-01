@@ -1,0 +1,26 @@
+<div class="container-fluid justify-content-center">
+  <div class="mt-3">
+    <app-loader *ngIf="loading$ | async; else notLoading"></app-loader>
+  </div>
+  <ng-template #notLoading>
+    <ng-container *ngIf="(error$ | async) === false">
+      <h2>{{ (details$ | async).city.name }}, {{ (details$ | async).city.country }}</h2>
+
+      <!-- Detailed Weather today -->
+      <div class="card mb-2 p-3 me-3">
+        <app-detailed-weather [weather]="(details$ | async).current"
+                              [unit]="unit$ | async">
+        </app-detailed-weather>
+      </div>
+
+      <div class="d-flex flex-wrap justify-content-center">
+        <app-daily-weather *ngFor="let daily of (details$ | async).daily"
+                          [dailyWeather]="daily"
+                          [timeZone]="(details$ | async).city.timeZone"
+                          [unit]="unit$ | async">
+        </app-daily-weather>
+      </div>
+    </ng-container>
+    <div *ngIf="error$ | async">Erro</div>
+  </ng-template>
+</div>

@@ -1,0 +1,6 @@
+<!-- With Angular Material -->
+<mat-button-toggle-group color='warning' appearance="legacy" name="fontStyle" aria-label="Font Style" #group="matButtonToggleGroup" value="Celsius">
+  <mat-button-toggle value="Celsius" (click)="updateUnit(unitsEnum.Metric)" aria-pressed="true" title="Celsius">˚C</mat-button-toggle>
+  <mat-button-toggle value="Fahrenheit" (click)="updateUnit(unitsEnum.Imperial)" title="Fahrenheit">˚F</mat-button-toggle>
+  <mat-button-toggle value="Kelvin" (click)="updateUnit(unitsEnum.SI)" title="Kelvin">K</mat-button-toggle>
+</mat-button-toggle-group>

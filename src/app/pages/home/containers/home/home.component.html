@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-center mt-3">
+    <div class="input-group" style="width: 600px;">
+      <input class="form-control mr-sm-2" type="text" [formControl]="searchControl" placeholder="Acre, Br">
+      <button class="btn btn-outline-dark my-2 my-sm-0" [disabled]="!searchControl.valid" (click)="doSearch()" type="button">Search</button>
+    </div>
+  </div>  
+
+  <br>
+  <app-loader *ngIf="loading$ | async"></app-loader>
+
+  <div class="d-flex justify-content-center" 
+      *ngIf="(loading$ | async) === false && (error$ | async) === false && !!cityWeather">
+    <app-current-weather  [cityWeather]="cityWeather"
+                          [unit]="unit$ | async"
+                          (toggleBookmark)="onToggleBookmark()">
+    </app-current-weather>
+  </div>
+  <div class="d-flex justify-content-center" *ngIf="(loading$ | async) === false && error$ | async">
+    <a>Não localizado, o nome do local está correto ?</a>
+  </div>
+</div>

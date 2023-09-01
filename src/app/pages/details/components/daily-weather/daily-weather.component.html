@@ -1,0 +1,17 @@
+<div class="card p-3 me-3 mb-2 mt-2" style="width: 300px;">
+  <span class="badge bg-dark" style="font-size: 12px;">{{ date | date: 'dd MMM - cccc' | uppercase}}</span>
+  <div>
+    <picture>
+      <img [src]="icon" alt="icone">
+    </picture>
+    <section>
+      <div>{{ weather.minTemp }} {{ unitSymbol }} - {{ weather.maxTemp }} {{ unitSymbol }}</div>
+      <div>Humidade: {{ weather.humidity }} %</div>
+      <div>Velocidade do vento: {{ weather.wind.speed }} m/s</div>
+    </section>
+    <section>
+      <div>Nascer do sol: {{ unixToHourMinute(weather.sunrise) | date:'HH:mm' }}</div>
+      <div>Pôr do sol: {{ unixToHourMinute(weather.sunset) | date:'HH:mm'}}</div>
+    </section>
+  </div>
+</div>
